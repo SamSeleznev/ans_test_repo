@@ -1,6 +1,6 @@
 ---
 - name: Deploy dockerized web app
-  hosts: your_remote_host
+  hosts: PROD_SERVER_WEB
   become: yes
 
   roles:
