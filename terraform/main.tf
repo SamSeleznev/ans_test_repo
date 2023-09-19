@@ -2,7 +2,7 @@ provider "aws" {
   region = "ap-northeast-2"
 }
 
-resource "aws_instance" "webapp_instance" {
+resource "aws_instance" "ubuntuserver" {
   ami           = "ami-04cebc8d6c4f297a3"
   instance_type = "t2.micro"
   vpc_security_group_ids = ["sg-02aecc7bf2b1840dc"]
