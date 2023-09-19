@@ -52,7 +52,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
       - name: Wait for SSH to become available
         run: |
-          for i in {1..30}; do 
+          for i in {1..15}; do 
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@$IP_ADDRESS echo "SSH is available!" && break
             echo "SSH not available, waiting for 10 seconds..."
             sleep 10
