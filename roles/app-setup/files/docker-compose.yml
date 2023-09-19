@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        volumes:
+            - ./web:/var/www/html
+        ports:
+            - "8080:80"
+        env_file:
+            - .env
+    db:
+        image: mysql:5.7
+        env_file:
+            - .env

@@ -1,0 +1,10 @@
+---
+- name: Ensure Docker is installed
+  apt:
+    name: docker.io
+    state: present
+
+- name: Ensure Docker-Compose is installed
+  apt:
+    name: docker-compose
+    state: present

@@ -1,0 +1,4 @@
+---
+- name: Reload Nginx
+  command: docker exec -it container_name nginx -s reload
+  listen: reload nginx

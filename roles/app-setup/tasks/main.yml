@@ -1,0 +1,15 @@
+---
+- name: Copy application files to remote
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/mywebapp/"
+  with_items:
+    - files/Dockerfile
+    - files/docker-compose.yml
+    - files/nginx-default.conf
+    - files/.env
+
+- name: Start Docker containers
+  command:
+    cmd: docker-compose up -d
+    chdir: /var/www/mywebapp/
