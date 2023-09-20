@@ -56,22 +56,22 @@ jobs:
         with:
           name: instance_ip
           path: terraform/
+
+      - name: Create inventory file
+        run: |
+          IP_ADDRESS=$(cat terraform/instance_ip.txt)
+          echo "[PROD_SERVER_WEB]" > ./inventory.ini
+          echo "$IP_ADDRESS ansible_user=ubuntu" >> ./inventory.ini               
         
       - name: Wait for SSH to become available
         run: |
-          for i in {1..30}; do 
+          for i in {1..15}; do 
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@$IP_ADDRESS echo "SSH is available!" && break
             echo "SSH not available, waiting for 10 seconds..."
             sleep 10
           done
         env:
           IP_ADDRESS: $(cat terraform/instance_ip.txt)
-      - name: Create inventory file
-        run: |
-          IP_ADDRESS=$(cat terraform/instance_ip.txt)
-          echo "[PROD_SERVER_WEB]" > ./inventory.ini
-          echo "$IP_ADDRESS ansible_user=ubuntu" >> ./inventory.ini               
-
       - name: Deploy containers to target machine
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
